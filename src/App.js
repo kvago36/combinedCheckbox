@@ -1,25 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
+import Checkbox from './Checkbox'
+
 function App() {
+  const [state, setState] = useState({ parent: true, child: true })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div style={{ fontFamily: 'system-ui' }}>
+      <label>
+        <Checkbox
+          name="parent"
+          checked={state.parent}
+          onChange={() => setState({ ...state, parent: !state.parent })}
+        />
+        <span style={{ marginLeft: 8 }}>Label 1</span>
+      </label>
+      <label>
+        <Checkbox
+          child
+          name="child"
+          parent={state.parent}
+          checked={state.child}
+          onChange={() => setState({ ...state, child: !state.child })}
+        />
+        <span style={{ marginLeft: 8 }}>Label 2</span>
+      </label>
+  </div>
   );
 }
 
